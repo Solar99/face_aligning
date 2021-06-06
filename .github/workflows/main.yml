@@ -1,0 +1,27 @@
+
+
+name: CI-CD-Pipeline
+env:
+   EU_PACKAGE_S3_BUKET_NAME : "face-aligning"
+   EU_APPLICATION_NAME      : "face_aligning"
+   EU_ENVIRONMENT_NAME      : "face_aligning-env"
+   DEPLOY_PACKAGE_NAME      : "flask_app_${{ github.sha }}.zip"
+   AWS_REGION_NAME          : "eu-central-1"
+
+on:
+  push:
+    branches:
+      - master
+  
+  
+jobs:
+  my_ci_part:
+    runs-on: ubuntu-latest
+    
+    
+    steps:
+    - name: Git clone our repo
+      uses: actions/checkout@v1
+      
+    - name: Create ZIP deploymant package
+      run : zip -r ${{ env.DEPLOY_PACKAGE_NAME}} ./ -x *.git*
