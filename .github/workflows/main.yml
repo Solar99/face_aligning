@@ -24,7 +24,7 @@ jobs:
       uses: actions/checkout@v1
       
     - name: Create ZIP deploymant package
-      run : zip -r ${{ env.DEPLOY_PACKAGE_NAME}} ./ -x *.git*
+      run : zip -r -d /face_aligning/align_face.py ${{ env.DEPLOY_PACKAGE_NAME}} ./ -x *.git*
       
     - name: Configure my AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
